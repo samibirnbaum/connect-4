@@ -1,0 +1,19 @@
+{
+  "name": "connect-4",
+  "version": "1.0.0",
+  "description": "24 Hour Challenge to build Connect-4 game",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/samibirnbaum/connect-4.git"
+  },
+  "author": "Sami Birnbaum",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/samibirnbaum/connect-4/issues"
+  },
+  "homepage": "https://github.com/samibirnbaum/connect-4#readme"
+}
