@@ -15,5 +15,10 @@
   "bugs": {
     "url": "https://github.com/samibirnbaum/connect-4/issues"
   },
-  "homepage": "https://github.com/samibirnbaum/connect-4#readme"
+  "homepage": "https://github.com/samibirnbaum/connect-4#readme",
+  "dependencies": {
+    "bootstrap": "^4.0.0",
+    "jquery": "^3.3.1",
+    "normalize.css": "^8.0.0"
+  }
 }
