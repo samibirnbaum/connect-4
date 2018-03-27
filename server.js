@@ -11,7 +11,7 @@ var static = require( 'node-static' ),
     http = require( 'http' );
 
 // config
-var file = new static.Server("./app");
+var file = new static.Server();
 
 // serve
 http.createServer( function ( request, response ) {
