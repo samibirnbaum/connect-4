@@ -1,9 +1,4 @@
-/**
- * Static HTTP Server
- *
- * Create a static file server instance to serve files
- * and folder in the './app' folder
- */
+//Static HTTP Server
 
 // modules
 var static = require( 'node-static' ),
