@@ -51,7 +51,37 @@ h1 {
 .turn {
     background-color: lightseagreen;
     grid-area: t;
+    text-align: center;
 }
+
+.turn h2 {
+    padding-top: 50px;
+    padding-bottom: 25px;
+}
+
+.red-piece {
+    height: 80px;
+    width: 80px;
+    background-color: #FF3333 ;
+    border-radius: 50%;
+    border-style: ridge;
+    border-width: 5px;
+    border-color: #990000;
+    background-image:     url("https://www.transparenttextures.com/patterns/dark-exa.png");
+    display: inline-block;
+  }
+  
+  .yellow-piece {
+    height: 80px;
+    width: 80px;
+    background-color: #FFFF33;
+    border-radius: 50%;
+    border-style: ridge;
+    border-width: 5px;
+    border-color: #FFFF00;
+    background-image:     url("https://www.transparenttextures.com/patterns/dark-exa.png");
+    display: inline-block;
+  }
 
 .board {
     background-color: palegoldenrod;
