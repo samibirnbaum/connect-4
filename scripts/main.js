@@ -28,8 +28,8 @@ $("button").click(function () {
 
 var changeTurnInfo = function() {
     if (clickCountTotal%2 === 0) {
-        $(".turn").append(playerOnesTurn + redPiece);
+        $(".turn").empty().append(playerOnesTurn + redPiece);
     }else{
-        $(".turn").append(playerTwosTurn + yellowPiece);
+        $(".turn").empty().append(playerTwosTurn + yellowPiece);
     }
 };
