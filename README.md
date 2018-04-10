@@ -4,9 +4,11 @@
 
 Build a game of connect 4 from scratch in 24 hours.
 
-![Snapshot](app/assets/images/snapshot.png)
+![Snapshot](assets/images/snapshot.png)
 
-[Case Study](https://samibirnbaum.com/portfolio/chitchat.html)
+[Visit Site](https://evening-lowlands-83392.herokuapp.com/)
+
+[Case Study](https://samibirnbaum.com/portfolio/connect4.html)
 
 ## Usage
 
