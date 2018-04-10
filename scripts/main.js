@@ -3,22 +3,23 @@ $("button").click(function (event) {
     clickTrack(event.target);    
     changeTurnInfo();
     placePiece(event.target);
-    console.log(theBoard);
     winCheck();
-    
 });
 
 
 /****GLOBAL VARIABLES****/
 
+var currentPieceColor = "red";
+var currentPlacedCell = 0;
+
 var clickCountTotal = 0;
-var pieceColor = "red";
 var buttonOneClickCount = 0;
 var buttonTwoClickCount = 0;
 var buttonThreeClickCount = 0;
 var buttonFourClickCount = 0;
 var buttonFiveClickCount = 0;
 var buttonSixClickCount = 0;
+
 var theBoard = [
     "1blank", "2blank", "3blank", "4blank", "5blank", "6blank",
     "7blank", "8blank", "9blank", "10blank", "11blank", "12blank",
@@ -27,6 +28,7 @@ var theBoard = [
     "25blank", "26blank", "27blank", "28blank", "29blank", "30blank",
     "31blank", "32blank", "33blank", "34blank", "35blank", "36blank",
 ];
+var inARow = 0;
 
 /*************************/
 
@@ -84,10 +86,10 @@ var playerTwosTurn = '<h2 class="text-muted">Player 2 <br> It is your turn</h2>'
 var changeTurnInfo = function() {
     if (clickCountTotal%2 === 0) {
         $(".turn").empty().append(playerOnesTurn + redPiece);
-        pieceColor = "yellow";
+        currentPieceColor = "yellow";
     }else{
         $(".turn").empty().append(playerTwosTurn + yellowPiece);
-        pieceColor = "red"
+        currentPieceColor = "red"
     }
 };
 /*********************************/
@@ -105,128 +107,164 @@ var changeTurnInfo = function() {
 
 var placePiece = function(eventTarget) {
     if($(eventTarget).data("button") === 1 && buttonOneClickCount === 1){
-        insertPiece(31, pieceColor);
-        updateTheBoard(31, pieceColor);
+        currentPlacedCell = 31;
+        insertPiece(currentPlacedCell, currentPieceColor);
+        updateTheBoard(currentPlacedCell, currentPieceColor);
     }else if($(eventTarget).data("button") === 1 && buttonOneClickCount === 2){
-        insertPiece(25, pieceColor);
-        updateTheBoard(25, pieceColor);
+        currentPlacedCell = 25;
+        insertPiece(currentPlacedCell, currentPieceColor);
+        updateTheBoard(currentPlacedCell, currentPieceColor);
     }else if($(eventTarget).data("button") === 1 && buttonOneClickCount === 3){
-        insertPiece(19, pieceColor);
-        updateTheBoard(19, pieceColor);
+        currentPlacedCell = 19;
+        insertPiece(currentPlacedCell, currentPieceColor);
+        updateTheBoard(currentPlacedCell, currentPieceColor);
     }else if($(eventTarget).data("button") === 1 && buttonOneClickCount === 4){
-        insertPiece(13, pieceColor);
-        updateTheBoard(13, pieceColor);
+        currentPlacedCell = 13;
+        insertPiece(currentPlacedCell, currentPieceColor);
+        updateTheBoard(currentPlacedCell, currentPieceColor);
     }else if($(eventTarget).data("button") === 1 && buttonOneClickCount === 5){
-        insertPiece(7, pieceColor);
-        updateTheBoard(7, pieceColor);
+        currentPlacedCell = 7;
+        insertPiece(currentPlacedCell, currentPieceColor);
+        updateTheBoard(currentPlacedCell, currentPieceColor);
     }else if($(eventTarget).data("button") === 1 && buttonOneClickCount >= 6){
-        insertPiece(1, pieceColor);
-        updateTheBoard(1, pieceColor);
+        currentPlacedCell = 1;
+        insertPiece(currentPlacedCell, currentPieceColor);
+        updateTheBoard(currentPlacedCell, currentPieceColor);
         $("[data-button=1]").prop("disabled","true");
     }
 
     if($(eventTarget).data("button") === 2 && buttonTwoClickCount === 1){
-        insertPiece(32, pieceColor);
-        updateTheBoard(32, pieceColor);
+        currentPlacedCell = 32;
+        insertPiece(currentPlacedCell, currentPieceColor);
+        updateTheBoard(currentPlacedCell, currentPieceColor);
     }else if($(eventTarget).data("button") === 2 && buttonTwoClickCount === 2){
-        insertPiece(26, pieceColor);
-        updateTheBoard(26, pieceColor);
+        currentPlacedCell = 26;
+        insertPiece(currentPlacedCell, currentPieceColor);
+        updateTheBoard(currentPlacedCell, currentPieceColor);
     }else if($(eventTarget).data("button") === 2 && buttonTwoClickCount === 3){
-        insertPiece(20, pieceColor);
-        updateTheBoard(20, pieceColor);
+        currentPlacedCell = 20;
+        insertPiece(currentPlacedCell, currentPieceColor);
+        updateTheBoard(currentPlacedCell, currentPieceColor);
     }else if($(eventTarget).data("button") === 2 && buttonTwoClickCount === 4){
-        insertPiece(14, pieceColor);
-        updateTheBoard(14, pieceColor);
+        currentPlacedCell = 14;
+        insertPiece(currentPlacedCell, currentPieceColor);
+        updateTheBoard(currentPlacedCell, currentPieceColor);
     }else if($(eventTarget).data("button") === 2 && buttonTwoClickCount === 5){
-        insertPiece(8, pieceColor);
-        updateTheBoard(8, pieceColor);
+        currentPlacedCell = 8;
+        insertPiece(currentPlacedCell, currentPieceColor);
+        updateTheBoard(currentPlacedCell, currentPieceColor);
     }else if($(eventTarget).data("button") === 2 && buttonTwoClickCount >= 6){
-        insertPiece(2, pieceColor);
-        updateTheBoard(2, pieceColor);
+        currentPlacedCell = 2;
+        insertPiece(currentPlacedCell, currentPieceColor);
+        updateTheBoard(currentPlacedCell, currentPieceColor);
         $("[data-button=2]").prop("disabled","true");
     }
 
     if($(eventTarget).data("button") === 3 && buttonThreeClickCount === 1){
-        insertPiece(33, pieceColor);
-        updateTheBoard(33, pieceColor);
+        currentPlacedCell = 33;
+        insertPiece(currentPlacedCell, currentPieceColor);
+        updateTheBoard(currentPlacedCell, currentPieceColor);
     }else if($(eventTarget).data("button") === 3 && buttonThreeClickCount === 2){
-        insertPiece(27, pieceColor);
-        updateTheBoard(27, pieceColor);
+        currentPlacedCell = 27;
+        insertPiece(currentPlacedCell, currentPieceColor);
+        updateTheBoard(currentPlacedCell, currentPieceColor);
     }else if($(eventTarget).data("button") === 3 && buttonThreeClickCount === 3){
-        insertPiece(21, pieceColor);
-        updateTheBoard(21, pieceColor);
+        currentPlacedCell = 21;
+        insertPiece(currentPlacedCell, currentPieceColor);
+        updateTheBoard(currentPlacedCell, currentPieceColor);
     }else if($(eventTarget).data("button") === 3 && buttonThreeClickCount === 4){
-        insertPiece(15, pieceColor);
-        updateTheBoard(15, pieceColor);
+        currentPlacedCell = 15;
+        insertPiece(currentPlacedCell, currentPieceColor);
+        updateTheBoard(currentPlacedCell, currentPieceColor);
     }else if($(eventTarget).data("button") === 3 && buttonThreeClickCount === 5){
-        insertPiece(9, pieceColor);
-        updateTheBoard(9, pieceColor);
+        currentPlacedCell = 9;
+        insertPiece(currentPlacedCell, currentPieceColor);
+        updateTheBoard(currentPlacedCell, currentPieceColor);
     }else if($(eventTarget).data("button") === 3 && buttonThreeClickCount >= 6){
-        insertPiece(3, pieceColor);
-        updateTheBoard(3, pieceColor);
+        currentPlacedCell = 3;
+        insertPiece(currentPlacedCell, currentPieceColor);
+        updateTheBoard(currentPlacedCell, currentPieceColor);
         $("[data-button=3]").prop("disabled","true");
     }
 
     if($(eventTarget).data("button") === 4 && buttonFourClickCount === 1){
-        insertPiece(34, pieceColor);
-        updateTheBoard(34, pieceColor);
+        currentPlacedCell = 34;
+        insertPiece(currentPlacedCell, currentPieceColor);
+        updateTheBoard(currentPlacedCell, currentPieceColor);
     }else if($(eventTarget).data("button") === 4 && buttonFourClickCount === 2){
-        insertPiece(28, pieceColor);
-        updateTheBoard(28, pieceColor);
+        currentPlacedCell = 28;
+        insertPiece(currentPlacedCell, currentPieceColor);
+        updateTheBoard(currentPlacedCell, currentPieceColor);
     }else if($(eventTarget).data("button") === 4 && buttonFourClickCount === 3){
-        insertPiece(22, pieceColor);
-        updateTheBoard(22, pieceColor);
+        currentPlacedCell = 22;
+        insertPiece(currentPlacedCell, currentPieceColor);
+        updateTheBoard(currentPlacedCell, currentPieceColor);
     }else if($(eventTarget).data("button") === 4 && buttonFourClickCount === 4){
-        insertPiece(16, pieceColor);
-        updateTheBoard(16, pieceColor);
+        currentPlacedCell = 16;
+        insertPiece(currentPlacedCell, currentPieceColor);
+        updateTheBoard(currentPlacedCell, currentPieceColor);
     }else if($(eventTarget).data("button") === 4 && buttonFourClickCount === 5){
-        insertPiece(10, pieceColor);
-        updateTheBoard(10, pieceColor);
+        currentPlacedCell = 10;
+        insertPiece(currentPlacedCell, currentPieceColor);
+        updateTheBoard(currentPlacedCell, currentPieceColor);
     }else if($(eventTarget).data("button") === 4 && buttonFourClickCount >= 6){
-        insertPiece(4, pieceColor);
-        updateTheBoard(4, pieceColor);
+        currentPlacedCell = 4;
+        insertPiece(currentPlacedCell, currentPieceColor);
+        updateTheBoard(currentPlacedCell, currentPieceColor);
         $("[data-button=4]").prop("disabled","true");
     }
 
     if($(eventTarget).data("button") === 5 && buttonFiveClickCount === 1){
-        insertPiece(35, pieceColor);
-        updateTheBoard(35, pieceColor);
+        currentPlacedCell = 35;
+        insertPiece(currentPlacedCell, currentPieceColor);
+        updateTheBoard(currentPlacedCell, currentPieceColor);
     }else if($(eventTarget).data("button") === 5 && buttonFiveClickCount === 2){
-        insertPiece(29, pieceColor);
-        updateTheBoard(29, pieceColor);
+        currentPlacedCell = 29;
+        insertPiece(currentPlacedCell, currentPieceColor);
+        updateTheBoard(currentPlacedCell, currentPieceColor);
     }else if($(eventTarget).data("button") === 5 && buttonFiveClickCount === 3){
-        insertPiece(23, pieceColor);
-        updateTheBoard(23, pieceColor);
+        currentPlacedCell = 23;
+        insertPiece(currentPlacedCell, currentPieceColor);
+        updateTheBoard(currentPlacedCell, currentPieceColor);
     }else if($(eventTarget).data("button") === 5 && buttonFiveClickCount === 4){
-        insertPiece(17, pieceColor);
-        updateTheBoard(17, pieceColor);
+        currentPlacedCell = 17;
+        insertPiece(currentPlacedCell, currentPieceColor);
+        updateTheBoard(currentPlacedCell, currentPieceColor);
     }else if($(eventTarget).data("button") === 5 && buttonFiveClickCount === 5){
-        insertPiece(11, pieceColor);
-        updateTheBoard(11, pieceColor);
+        currentPlacedCell = 11;
+        insertPiece(currentPlacedCell, currentPieceColor);
+        updateTheBoard(currentPlacedCell, currentPieceColor);
     }else if($(eventTarget).data("button") === 5 && buttonFiveClickCount >= 6){
-        insertPiece(5, pieceColor);
-        updateTheBoard(5, pieceColor);
+        currentPlacedCell = 5;
+        insertPiece(currentPlacedCell, currentPieceColor);
+        updateTheBoard(currentPlacedCell, currentPieceColor);
         $("[data-button=5]").prop("disabled","true");
     }
 
     if($(eventTarget).data("button") === 6 && buttonSixClickCount === 1){
-        insertPiece(36, pieceColor);
-        updateTheBoard(36, pieceColor);
+        currentPlacedCell = 36;
+        insertPiece(currentPlacedCell, currentPieceColor);
+        updateTheBoard(currentPlacedCell, currentPieceColor);
     }else if($(eventTarget).data("button") === 6 && buttonSixClickCount === 2){
-        insertPiece(30, pieceColor);
-        updateTheBoard(30, pieceColor);
+        currentPlacedCell = 30;
+        insertPiece(currentPlacedCell, currentPieceColor);
+        updateTheBoard(currentPlacedCell, currentPieceColor);
     }else if($(eventTarget).data("button") === 6 && buttonSixClickCount === 3){
-        insertPiece(24, pieceColor);
-        updateTheBoard(24, pieceColor);
+        currentPlacedCell = 24;
+        insertPiece(currentPlacedCell, currentPieceColor);
+        updateTheBoard(currentPlacedCell, currentPieceColor);
     }else if($(eventTarget).data("button") === 6 && buttonSixClickCount === 4){
-        insertPiece(18, pieceColor);
-        updateTheBoard(18, pieceColor);
+        currentPlacedCell = 18;
+        insertPiece(currentPlacedCell, currentPieceColor);
+        updateTheBoard(currentPlacedCell, currentPieceColor);
     }else if($(eventTarget).data("button") === 6 && buttonSixClickCount === 5){
-        insertPiece(12, pieceColor);
-        updateTheBoard(12, pieceColor);
+        currentPlacedCell = 12;
+        insertPiece(currentPlacedCell, currentPieceColor);
+        updateTheBoard(currentPlacedCell, currentPieceColor);
     }else if($(eventTarget).data("button") === 6 && buttonSixClickCount >= 6){
-        insertPiece(6, pieceColor);
-        updateTheBoard(6, pieceColor);
+        currentPlacedCell = 6;
+        insertPiece(currentPlacedCell, currentPieceColor);
+        updateTheBoard(currentPlacedCell, currentPieceColor);
         $("[data-button=6]").prop("disabled","true");
     }
 };
@@ -256,10 +294,164 @@ var updateTheBoard = function(number, color) {
 
 /****CHECKING FOR A WIN****/
 
+// A proximity search, which occurs when a piece is placed on the board, in all directions
+// To increase speed I have limited searches in directions only when necessary
 var winCheck = function(){
-    //use the array to check for a winner
-    //when someone wins reset everything
+    var limitCheckLeft = [4, 5, 6, 10, 11, 12, 16, 17, 18, 22, 23, 24, 28, 29, 30, 34, 35, 36];
+    var limitCheckRight = [1, 2, 3, 7, 8, 9, 13, 14, 15, 19, 20, 21, 25, 26, 27, 31, 32, 33];
+    var limitCheckDown = [1, 2,	3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18];
+    var limitCheckRDU = [19, 20, 21, 25, 26, 27, 31, 32, 33];
+    var limitCheckRDD = [1,2,3,7,8,9,13,14,15];
+    var limitCheckLDU = [22,23,24,28,29,30,34,35,36];
+    var limitCheckLDD = [4,5,6,10,11,12,16,17,18];
+
+    if (limitCheckLeft.includes(currentPlacedCell)) {leftCheck();}
+    
+    if (limitCheckRight.includes(currentPlacedCell)) {rightCheck();}
+    
+    if (limitCheckDown.includes(currentPlacedCell)) {downCheck();}
+    
+    if (limitCheckRDU.includes(currentPlacedCell)) {rightDiagonalUpCheck();}
+    
+    if (limitCheckRDD.includes(currentPlacedCell)) {rightDiagonalDownCheck();}
+
+    if (limitCheckLDU.includes(currentPlacedCell)) {leftDiagonalUpCheck();}
+
+    if (limitCheckLDD.includes(currentPlacedCell)) {leftDiagonalDownCheck();}   
 };
 
 
+var rightCheck = function () {
+    //based on the current placed cell in the view check through theBoard array
+    var cellToTheRightInArray = currentPlacedCell; 
+    for(var i=0; i<3; i++){    
+        if(theBoard[cellToTheRightInArray] === (cellToTheRightInArray+1)+currentPieceColor){
+            inARow = inARow + 1;  
+        }else{
+            inARow = 0;
+            break;
+        }
+        //after checking one cell in theBoard array in that direction move to the next cell
+        cellToTheRightInArray = cellToTheRightInArray + 1;
+    }
+    if(inARow === 3){winAndReset();}
+};
+
+
+var leftCheck = function () {
+    //based on the current placed cell in the view check through theBoard array
+    var cellToTheLeftInArray = currentPlacedCell-2; 
+    for(var i=0; i<3; i++){    
+        if(theBoard[cellToTheLeftInArray] === (cellToTheLeftInArray+1)+currentPieceColor){
+            inARow = inARow + 1;  
+        }else{
+            inARow = 0;
+            break;
+        }
+          
+        //after checking one cell in theBoard array in that direction move to the next cell
+        cellToTheLeftInArray = cellToTheLeftInArray - 1;
+    }
+    if(inARow === 3){winAndReset();}
+};
+
+var downCheck = function () {
+    //based on the current placed cell in the view check through theBoard array
+    var cellDownInArray = currentPlacedCell+5; 
+    for(var i=0; i<3; i++){    
+        if(theBoard[cellDownInArray] === (cellDownInArray+1)+currentPieceColor){
+            inARow = inARow + 1;  
+        }else{
+            inARow = 0;
+            break;
+        }
+          
+        //after checking one cell in theBoard array in that direction move to the next cell
+        cellDownInArray = cellDownInArray + 6;
+    }
+    if(inARow === 3){winAndReset();}        
+};
+
+var rightDiagonalUpCheck = function () {
+    //based on the current placed cell in the view check through theBoard array
+    var cellRDUInArray = currentPlacedCell-6; 
+    for(var i=0; i<3; i++){    
+        if(theBoard[cellRDUInArray] === (cellRDUInArray+1)+currentPieceColor){
+            inARow = inARow + 1;  
+        }else{
+            inARow = 0;
+            break;
+        }
+          
+        //after checking one cell in theBoard array in that direction move to the next cell
+        cellRDUInArray = cellRDUInArray - 5;
+    }
+    if(inARow === 3){winAndReset();}
+};
+
+var rightDiagonalDownCheck = function () {
+    //based on the current placed cell in the view check through theBoard array
+    var cellRDDInArray = currentPlacedCell+6; 
+    for(var i=0; i<3; i++){    
+        if(theBoard[cellRDDInArray] === (cellRDDInArray+1)+currentPieceColor){
+            inARow = inARow + 1;  
+        }else{
+            inARow = 0;
+            break;
+        }
+          
+        //after checking one cell in theBoard array in that direction move to the next cell
+        cellRDDInArray = cellRDDInArray + 7;
+    }
+    if(inARow === 3){winAndReset();}  
+};
+
+var leftDiagonalUpCheck = function () {
+    //based on the current placed cell in the view check through theBoard array
+    var cellLDUInArray = currentPlacedCell-8; 
+    for(var i=0; i<3; i++){    
+        if(theBoard[cellLDUInArray] === (cellLDUInArray+1)+currentPieceColor){
+            inARow = inARow + 1;  
+        }else{
+            inARow = 0;
+            break;
+        }
+          
+        //after checking one cell in theBoard array in that direction move to the next cell
+        cellLDUInArray = cellLDUInArray - 7;
+    }
+    if(inARow === 3){winAndReset();}  
+};
+
+var leftDiagonalDownCheck = function () {
+    //based on the current placed cell in the view check through theBoard array
+    var cellLDDInArray = currentPlacedCell+4; 
+    for(var i=0; i<3; i++){    
+        if(theBoard[cellLDDInArray] === (cellLDDInArray+1)+currentPieceColor){
+            inARow = inARow + 1;  
+        }else{
+            inARow = 0;
+            break;
+        }
+          
+        //after checking one cell in theBoard array in that direction move to the next cell
+        cellLDDInArray = cellLDDInArray + 5;
+    }
+    if(inARow === 3){winAndReset();}
+};
+
+
+var winAndReset = function(){
+    setTimeout(function() { 
+        if (clickCountTotal%2 === 0) {
+            alert("YELLOW WINS!!!\n\nPlayer 2 you owned this one!\n\nClick Ok to Reset the Game");
+        }else{
+            alert("RED WINS!!!\n\nPlayer 1 this one belongs to you!\n\nClick Ok to Reset the Game");
+        } 
+    }, 100);
+    
+    setTimeout(function(){
+        window.location.reload(true);
+    },2000);
+};
 /*********************************/
